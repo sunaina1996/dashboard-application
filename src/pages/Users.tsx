@@ -116,7 +116,7 @@ const handleDelete = (id: number) => {
   ];
 
   return (
-    <div className="space-y-6 px-6">
+    <div className="px-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4  [&>div]:px-0">
         <Heading
           title="Team Members"
@@ -150,10 +150,11 @@ const handleDelete = (id: number) => {
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setIsModalOpen(false)}>
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md" onClick={e => e.stopPropagation()}>
-            <div className="p-6 border-b border-slate-100">
-              <h2 className="text-xl font-semibold text-slate-900">
-                {editingUser? 'Edit User' : 'Add New User'}
-              </h2>
+            <div className="mt-6 border-b border-slate-100 [&>div]:py-0">
+               <Heading
+          title={editingUser? 'Edit User' : 'Add New User'}
+          level={4}
+        />
             </div>
             <div className="p-6 space-y-4">
               <div>

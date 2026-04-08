@@ -79,7 +79,7 @@ const handleDelete = (id: number) => {
   };
 
   return (
-    <div className="space-y-8 px-6">
+    <div className="px-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 [&>div]:px-0">
         <Heading
           title="Product Inventory"
@@ -141,97 +141,97 @@ const handleDelete = (id: number) => {
       </div>
 
       {/* Modal */}
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-          onClick={() => setIsModalOpen(false)}
-        >
-          <div
-            className="bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h- overflow-y-auto"
-            onClick={e => e.stopPropagation()}
-          >
-            <div className="p-6 border-b border-slate-100 sticky top-0 bg-white z-10">
-              <Heading
-                title={editingProduct? 'Edit Product' : 'Add New Product'}
-                level={3}
-                className="p-0 max-w-none"
-              />
-            </div>
+{isModalOpen && (
+  <div
+    className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-50 p-4!mt-0"
+    onClick={() => setIsModalOpen(false)}
+  >
+    <div
+      className="bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col"
+      onClick={e => e.stopPropagation()}
+    >
+      <div className="mt-6 border-b border-slate-100 [&>div]:py-0 flex-shrink-0">
+        <Heading
+          title={editingProduct? 'Edit Product' : 'Add New Product'}
+          level={4}
+        />
+      </div>
 
-            <div className="p-6 space-y-5">
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Product Name</label>
-                <Input
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value })}
-                  placeholder="MacBook Pro 16 inch"
-                />
-              </div>
+      {/* Ye wala div scroll hoga */}
+      <div className="p-6 space-y-5 overflow-y-auto">
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">Product Name</label>
+          <Input
+            value={formData.name}
+            onChange={(e) => setFormData({...formData, name: e.target.value })}
+            placeholder="MacBook Pro 16 inch"
+          />
+        </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Price ($)</label>
-                  <Input
-                    type="text"
-                    value={formData.price}
-                    onChange={(e) => setFormData({...formData, price: e.target.value })}
-                    placeholder="999"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Stock Qty</label>
-                  <Input
-                    type="text"
-                    value={formData.stock}
-                    onChange={(e) => setFormData({...formData, stock: e.target.value })}
-                    placeholder="50"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Category</label>
-                <select
-                  value={formData.category}
-                  onChange={(e) => setFormData({...formData, category: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-slate-900"
-                >
-                  <option value="Laptops">Laptops</option>
-                  <option value="Phones">Phones</option>
-                  <option value="Tablets">Tablets</option>
-                  <option value="Audio">Audio</option>
-                  <option value="Accessories">Accessories</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Image URL</label>
-                <Input
-                  value={formData.image}
-                  onChange={(e) => setFormData({...formData, image: e.target.value })}
-                  placeholder="https://images.unsplash.com/..."
-                />
-                {formData.image && (
-                  <img
-                    src={formData.image}
-                    alt="Preview"
-                    className="mt-3 w-full h-40 object-cover rounded-xl border border-slate-200"
-                  />
-                )}
-              </div>
-            </div>
-
-            <div className="p-6 bg-slate-50 rounded-b-3xl flex gap-3 justify-end sticky bottom-0">
-              <Button variant="secondary" onClick={() => setIsModalOpen(false)}>
-                Cancel
-              </Button>
-              <Button variant="primary" onClick={handleSave}>
-                {editingProduct? 'Update Product' : 'Add Product'}
-              </Button>
-            </div>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">Price ($)</label>
+            <Input
+              type="text"
+              value={formData.price}
+              onChange={(e) => setFormData({...formData, price: e.target.value })}
+              placeholder="999"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">Stock Qty</label>
+            <Input
+              type="text"
+              value={formData.stock}
+              onChange={(e) => setFormData({...formData, stock: e.target.value })}
+              placeholder="50"
+            />
           </div>
         </div>
-      )}
+
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">Category</label>
+          <select
+            value={formData.category}
+            onChange={(e) => setFormData({...formData, category: e.target.value })}
+            className="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-slate-900"
+          >
+            <option value="Laptops">Laptops</option>
+            <option value="Phones">Phones</option>
+            <option value="Tablets">Tablets</option>
+            <option value="Audio">Audio</option>
+            <option value="Accessories">Accessories</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">Image URL</label>
+          <Input
+            value={formData.image}
+            onChange={(e) => setFormData({...formData, image: e.target.value })}
+            placeholder="https://images.unsplash.com/..."
+          />
+          {formData.image && (
+            <img
+              src={formData.image}
+              alt="Preview"
+              className="mt-3 w-full h-40 object-cover rounded-xl border border-slate-200"
+            />
+          )}
+        </div>
+      </div>
+
+      <div className="p-6 bg-slate-50 rounded-b-3xl flex gap-3 justify-end flex-shrink-0">
+        <Button variant="secondary" onClick={() => setIsModalOpen(false)}>
+          Cancel
+        </Button>
+        <Button variant="primary" onClick={handleSave}>
+          {editingProduct? 'Update Product' : 'Add Product'}
+        </Button>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 };
